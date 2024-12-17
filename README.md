@@ -27,26 +27,33 @@ on data insights.
 performance and customer preferences.
 
 # DATA SOURCE
-The dataset for this analysis is an excel file gotten from 3Signet [Official Wwebsite](https://www.3signet.com/)
+The dataset for this analysis is an excel file gotten from 3Signet [Official Website](https://www.3signet.com/)
 
 #TOOLS USED
 - MS Excel [Download here](https://www.microsoft.com/en-us/microsoft-365/excel)
+
   Initial data cleaning and exploration
 
 - DB SQLITE [Download here](https://sqlitebrowser.org/dl/)
-  Querying and aggregating data from a relational database
+
+   Querying and aggregating data from a relational database
 
 - Python [Download here](https://www.python.org/downloads/)
-  Explorative Data Analysis
+
+   Explorative Data Analysis
 
 - PowerBI [Download here](https://www.microsoft.com/en-us/download/details.aspx?id=58494)
-  Building interactive dashboards and visualizations
+
+   Building interactive dashboards and visualizations
 
 - MS Powerpoint [Download here](https://www.microsoft.com/en/microsoft-365/powerpoint)
-  Presentation slide preparation
+
+   Presentation slide preparation
 
 - Github [Signup here](https://github.com/join)
+
   Portfolio building
 
 - Zoom [Download here](https://zoom.us/download?os=win)
-  Live demonstration
+
+   Live demonstration
