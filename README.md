@@ -57,3 +57,55 @@ The dataset for this analysis is an excel file gotten from 3Signet [Official Web
 - Zoom [Download here](https://zoom.us/download?os=win)
 
    Live demonstration
+
+#   WEEK 1
+- SQL database set up using SQLite DB Browser for the pharmaceutical data, ensuring 
+data integrity and security
+
+- Creation of facts and dimension tables
+```SQL
+-------------Creating fact table
+CREATE TABLE Sales(
+    SalesId INTEGER PRIMARY KEY NOT NULL,
+	Sales 	INTEGER  NOT NULL,
+    Month 	TEXT  NOT NULL,
+	Year date  NOT NULL,
+	ProductId INTEGER  NOT NULL,
+	CustomerId INTEGER  NOT NULL,
+	Name_of_sales_Rep TEXT  NOT NULL,
+	Manager TEXT  NOT NULL,
+	Sales_Team TEXT NOT NULL,
+	
+	FOREIGN KEY (ProductId) REFERENCES Products(ProductId),
+	FOREIGN KEY (CustomerId) REFERENCES Location (CustomerId));
+	
+	-------Dimension Tables
+	CREATE TABLE Products(
+	ProductName TEXT NOT NULL,
+	ProductClass TEXT NOT NULL,
+	Quantity_Price INTEGER NOT NULL,
+	ProductId INTEGER PRIMARY KEY NOT NULL);
+	
+  CREATE TABLE Location(
+	Distributor TEXT NOT NULL,
+	CustomerId INTEGER PRIMARY KEY NOT NULL,
+	CustomerName TEXT NOT NULL,
+	City TEXT NOT NULL,
+	CHANNEL TEXT NOT NULL,
+	COUNTRY TEXT NOT NULL,
+	Sub_channel TEXT NOT NULL,
+	Latitude INTEGER NOT NULL,
+	Longitude  INTEGER NOT NULL);
+```
+- ERD Creation using SQLITE
+
+
+- Initial data cleaning
+```SQL
+---- Count missing values in each column
+SELECT 
+    COUNT(*) - COUNT(Sales) AS MissingValues, 
+    Sales
+FROM 
+   Pharm_Data ;
+```
