@@ -494,16 +494,16 @@ correlation, p_value = stats.pearsonr(df['Price'], df['Quantity'])
 print(f'Correlation coefficient: {correlation}')
 print(f'p-value: {p_value}')
 ```
-**Result**
+**Result** :
 Correlation coefficient: -0.0005318345925375115
 p-value: 0.7886391604084931
 
-**Interpretation**
+**Interpretation** :
 Negative value of correlation coefficient Indicates a negative relationship (as price 
 increases, quantity decreases).
 p-value ≥ 0.05 indicates no significant evidence of correlation.
 
-**Conclusion**
+**Conclusion** :
 A negative correlation coefficient supports the hypothesis however, p-value >0.05 indicates 
 that the hypothesis is not supported by the data.
 
@@ -525,7 +525,7 @@ model = sm.OLS(y, X).fit()
 print(model.summary())
 ```
 
-**Result**
+**Result**:
                             OLS Regression Results                            
 ==============================================================================
 Dep. Variable:               Quantity   R-squared:                       0.000
@@ -552,29 +552,29 @@ Kurtosis:                    5374.334   Cond. No.                         980.
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
-**Interpretation**
- R-squared (0.000):
+**Interpretation** :
+ - R-squared (0.000):
    o The model explains 0% of the variation in Quantity, suggesting that Price has 
 no explanatory power over Quantity.
- Coefficient of Price (-0.0018):
+ - Coefficient of Price (-0.0018):
    o The negative coefficient suggests a slight negative relationship between Price
 and Quantity (as price increases, quantity slightly decreases), but:
    o p-value (0.789) > 0.05: This relationship is not statistically significant, meaning 
 this result could be due to chance.
- Intercept (113.5975):
+ - Intercept (113.5975):
    o When Price is zero, the expected Quantity is approximately 113.6 units.
    o This value is significant (p-value = 0.000), but it doesn't imply a meaningful 
 relationship with price.
- F-statistic (0.07187) and Prob (F-statistic) (0.789):
+ - F-statistic (0.07187) and Prob (F-statistic) (0.789):
    o The F-statistic tests if the model as a whole is significant. A very low F-statistic 
 with a high p-value indicates that the model doesn’t significantly explain 
 variations in Quantity.
- Residual Diagnostics:
+ - Residual Diagnostics:
    o Skewness and Kurtosis: High skew (53.870) and kurtosis (5374.334) suggest 
 that the residuals (errors) are not normally distributed, which can impact the 
 validity of OLS assumptions.
 
-**Conclusion**
+**Conclusion**: 
 There is no significant relationship between Price and Quantity.
 The model has poor explanatory power (R-squared = 0), indicating that Price does not 
 affect Quantity in this dataset.**The hypothesis is thereby rejected**
@@ -593,14 +593,140 @@ print(f'F-statistic: {f_statistic}')
 print(f'p-value: {p_value}')
 ```
 
-**Result**
+**Result**:
 F-statistic: 4.314565343723608
 p-value: 0.03778842555381452
 
-**Interpretation**
+**Interpretation**:
 A large F-statistic indicates that the variation between group means is greater than the variation within the groups, suggesting a potential difference among the groups.
 Since p-value < 0.05, we reject the null hypothesis. 
 
-**Conclusion**
+**Conclusion**:
 There is a significant difference in sales performance across different customer channels.
 Since p-value < 0.05, **we reject the hypothesis.**
+
+## Statistical Analysis
+- **Correlation Analysis**
+``python
+# Correlation matrix for numerical variables
+correlation_matrix = df[['Sales', 'Price', 'Quantity']].corr()
+print(correlation_matrix)
+``
+**Result** : 
+            Sales     Price  Quantity
+Sales     1.000000  0.070665  0.899464
+Price     0.070665  1.000000 -0.000532
+Quantity  0.899464 -0.000532  1.000000
+
+**Interpretation**:
+ - Sales and Quantity are strongly positively correlated, suggesting that the quantity of items sold significantly impacts total sales.
+ - Price has almost no correlation with either sales or quantity, implying that pricing changes do not strongly influence sales or quantities sold in this dataset.
+
+- **Simple Linear Regression Analysis**
+```python
+# Simple Linear Regression
+model = ols('Sales ~ Price + Quantity', data=df).fit()
+print(model.summary())
+```
+
+**Interpretation**:
+- The model as a whole is statistically significant, meaning that at least one of the predictors (Price or Quantity) significantly impacts sales.
+- For every one-unit increase in Price, sales increase by 110.43 units, holding Quantity 
+constant.
+- t-value = 83.172, p-value < 0.05: Price is a statistically significant predictor of Sales.
+- For every one-unit increase in Quantity, sales increase by 421.9999 units, holding Price constant.
+- Quantity has a much larger impact on Sales compared to Price, as indicated by the higher 
+coefficient (421.9999 vs. 110.43).
+
+- **Multiple Regression**
+```python
+# Multiple Regression
+multiple_model = ols('Sales ~ Price + Quantity + C(Channel)', data=df).fit()
+print(multiple_model.summary())
+```
+- **ANOVA**
+```PYTHON
+# One-way ANOVA
+anova_result = sm.stats.anova_lm(model, typ=2)
+print(anova_result)
+```
+
+**Results**:
+            sum_sq df F PR(>F)
+Price 1.568093e+14 1.0 6.917605e+03 0.0
+Quantity 2.506714e+16 1.0 1.105831e+06 0.0
+Residual 5.759502e+15 254079.0 NaN NaN
+
+**Interpretation**:
+ - Quantity dominates the model, explaining significantly more variance in Sales than Price 
+(as indicated by its much larger sum of squares and F-statistic).
+ - Price, while significant, has a smaller impact on the variation in Sales compared to 
+Quantity.
+
+##Recommendations
+1. Focus on Increasing Quantity
+- Insight: Quantity is the most significant driver of sales, as evidenced by its high coefficient (421.99 in regression) and dominant contribution to the explained 
+variance (sum of squares and F-statistic).
+- Action:
+ - Implement promotions, discounts, or bundling strategies to incentivize 
+bulk purchases.
+ - Optimize inventory management to ensure stock availability for highdemand products.
+ - Leverage marketing campaigns targeting products with higher sales 
+potential.
+
+2. Price Optimization with Caution
+- Insight: While Price has a statistically significant impact on sales, its influence is 
+relatively smaller compared to Quantity (lower sum of squares and coefficient of 
+110.43).
+- Action:
+ - Conduct price sensitivity analysis to identify optimal price points that 
+maximize sales without reducing volume.
+ - Use dynamic pricing strategies, adjusting prices based on demand 
+patterns, seasons, or competitor pricing.
+ - Avoid aggressive price increases that could adversely affect sales volume.
+   
+3. Reassess Channel Strategies
+- Insight: The "Pharmacy" channel does not significantly impact sales compared to 
+other channels (p = 0.385 for Channel in regression).
+- Action:
+ - Focus efforts on channels that consistently drive higher sales (e.g., retail or 
+online).
+ - Explore cross-channel strategies, such as leveraging retail and pharmacy 
+for complementary benefits.
+ - Evaluate if channel-specific factors, like customer preferences or 
+marketing, can be further optimized.
+
+4. Address Residual Variance
+- Insight: Residual variance (5.759502e+15 in ANOVA) suggests some variation in 
+sales remains unexplained by Price and Quantity.
+- Action:
+ - Investigate additional variables, such as customer demographics, region, 
+or time of year, that could enhance the model.
+ - Consider interaction terms (e.g., Price × Channel) to uncover nuanced 
+relationships.
+ - Use machine learning models like decision trees or random forests to 
+capture non-linear relationships and improve predictions.
+
+5. Monitor for Multicollinearity
+- Insight: A condition number of 1.98e+03 in regression suggests potential 
+multicollinearity between predictors.
+- Action:
+ -  Calculate the Variance Inflation Factor (VIF) to confirm multicollinearity.
+ - If present, consider transforming variables or removing redundant ones to 
+improve model reliability.
+
+6. Refine Model with Diagnostic Checks
+- Insight: Residual diagnostics (non-normality, skewness, and high kurtosis) 
+indicate potential outliers or model limitations.
+- Action:
+ - Perform residual plots to identify patterns or outliers.
+ - Apply transformations (e.g., log or square root) if necessary to stabilize 
+variance and normalize residuals.
+ - Reevaluate the model after addressing identified issues.
+Strategic Priorities:
+ - Short-term: Optimize pricing and drive immediate sales through quantity-increasing 
+campaigns.
+ - Medium-term: Analyze additional variables to improve model accuracy and identify 
+unexplored sales drivers.
+ - Long-term: Implement channel-specific and customer-segmented strategies for sustained 
+growth
