@@ -526,31 +526,7 @@ print(model.summary())
 ```
 
 **Result**:
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:               Quantity   R-squared:                       0.000
-Model:                            OLS   Adj. R-squared:                 -0.000
-Method:                 Least Squares   F-statistic:                   0.07187
-Date:                Fri, 06 Dec 2024   Prob (F-statistic):              0.789
-Time:                        14:16:06   Log-Likelihood:            -2.0406e+06
-No. Observations:              254082   AIC:                         4.081e+06
-Df Residuals:                  254080   BIC:                         4.081e+06
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P>|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-const        113.5975      3.082     36.854      0.000     107.556     119.639
-Price         -0.0018      0.007     -0.268      0.789      -0.015       0.011
-==============================================================================
-Omnibus:                   821906.489   Durbin-Watson:                   1.512
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):     305563630007.176
-Skew:                          53.870   Prob(JB):                         0.00
-Kurtosis:                    5374.334   Cond. No.                         980.
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+![hypo ols](https://github.com/user-attachments/assets/eacf740c-1e6c-40c7-bbab-4f189e42bf51)
 
 **Interpretation** :
  - R-squared (0.000):
@@ -628,6 +604,8 @@ Quantity  0.899464 -0.000532  1.000000
 model = ols('Sales ~ Price + Quantity', data=df).fit()
 print(model.summary())
 ```
+**Result**:
+![stat ols 1](https://github.com/user-attachments/assets/147ed2b8-8eed-4796-af4e-60ab315ceb33)
 
 **Interpretation**:
 - The model as a whole is statistically significant, meaning that at least one of the predictors (Price or Quantity) significantly impacts sales.
@@ -644,6 +622,10 @@ coefficient (421.9999 vs. 110.43).
 multiple_model = ols('Sales ~ Price + Quantity + C(Channel)', data=df).fit()
 print(multiple_model.summary())
 ```
+**Result**
+![stat ols 2](https://github.com/user-attachments/assets/3cb7939e-b595-48b5-b94e-928febb4e44d)
+
+
 - **ANOVA**
 ```PYTHON
 # One-way ANOVA
@@ -730,3 +712,5 @@ campaigns.
 unexplored sales drivers.
  - Long-term: Implement channel-specific and customer-segmented strategies for sustained 
 growth
+
+#WEEK 12
