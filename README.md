@@ -59,10 +59,10 @@ The dataset for this analysis is an excel file gotten from 3Signet [Official Web
    Live demonstration
 
 #   WEEK 7
-- SQL database set up using SQLite DB Browser for the pharmaceutical data, ensuring 
-data integrity and security
+**- SQL database set up using SQLite DB Browser for the pharmaceutical data, ensuring 
+data integrity and security**
 
-- Creation of facts and dimension tables
+**- Creation of facts and dimension tables**
 ```SQL
 -------------Creating fact table
 CREATE TABLE Sales(
@@ -97,11 +97,11 @@ CREATE TABLE Sales(
 	Latitude INTEGER NOT NULL,
 	Longitude  INTEGER NOT NULL);
 ```
-- ERD Creation using SQLITE
+**- ERD Creation using SQLITE**
 ![Pharm ERD Racheal Ilelaboye](https://github.com/user-attachments/assets/c8531558-70d2-47ae-a69e-50d5977681fb)
 
 
-- Initial data cleaning
+**- Initial data cleaning**
 ```SQL
 ---- Count missing values in each column
 SELECT 
@@ -112,7 +112,7 @@ FROM
 ```
 
 # WEEK 8
-- Sales performance analysis
+**- Sales performance analysis**
 ```SQL
 ---------Total sales by Products
 SELECT 
@@ -140,7 +140,7 @@ ORDER BY
 ```
 ![1B](https://github.com/user-attachments/assets/18c446da-cb61-4bc6-8e62-8132ec553681)
 
-- Sales by location
+**- Sales by location**
 ```SQL
 -----CITIES WITH HIGH SALES VOLUME
 SELECT 
@@ -169,7 +169,7 @@ ORDER BY
     TotalSalesVolume DESC;  
 ```
 ![2B](https://github.com/user-attachments/assets/570441db-4664-48c4-9474-338c0e778aa6)
-- Customer Segmentation
+**- Customer Segmentation**
 ```SQL
 ------Total sales by customer type
 SELECT 
@@ -196,7 +196,7 @@ ORDER BY
     TotalSales DESC;
 ```
 ![3B](https://github.com/user-attachments/assets/edd9639d-7f54-4afb-94e0-53453e388f5a)
-- Product analysis
+**- Product analysis**
 ``` SQL
 ---------top selling products within each drug class
 WITH RankedProducts AS (
@@ -234,7 +234,7 @@ ORDER BY
     Averageprice DESC;
 ```
 ![4B](https://github.com/user-attachments/assets/a6dcc412-286e-4046-ab52-97161da172df)
-- Sales representative performance
+**- Sales representative performance**
 ```sql
 ------top performing sales rep
 SELECT 
@@ -260,7 +260,7 @@ ORDER BY
     Totalsales DESC;
 ```
 ![5B](https://github.com/user-attachments/assets/31529632-c5d9-4502-9e0f-9ad563c7f97b)
-- Time series analysis
+**- Time series analysis**
 ```sql
 -----year over year growth in sales
 WITH YearlySales AS (
@@ -303,7 +303,7 @@ ORDER BY
 ![6B](https://github.com/user-attachments/assets/59be3ee9-0988-40b5-9a43-d1e40165c5cf)
 
 # WEEK 9
-- Data validation
+**- Data validation with python**
 ```python
 # Connect to database
 conn = r"C:\Users\user\Desktop\3Signet\Week 7\Pharm.db"
@@ -335,7 +335,7 @@ df['Sales'] = np.where(df['Sales'] > upper_bound, upper_bound,
 np.where(df['Sales'] < lower_bound, lower_bound,␣
 ↪df['Sales']))
 ```
-- Explorative data analysis
+**- Explorative data analysis with python**
 ```python
  # Descriptive statistics
 df.describe().round(1)
@@ -358,4 +358,86 @@ validation_report = {
 }
 print(validation_report)
 ```
+
+**- Sales analysis with python**
+```python
+# Group by year and sum the sales
+sales_by_year = df.groupby('Year')['Sales'].sum()
+print(sales_by_year)
+
+df.groupby('Year')['Sales'].sum().plot(kind='bar')
+plt.title("Sales by Year")
+plt.show()
+```
+![sales x year](https://github.com/user-attachments/assets/c0d71153-da69-4099-96d6-fba13a65ed39)
+
+```python
+# Sales by City
+sales_by_city = df.groupby('City')['Sales'].sum()
+print(sales_by_city)
+
+plt.figure(figsize=(10,6))
+plt.plot(df.groupby('City')['Sales'].sum().sort_values(ascending=False))
+plt.title("Sales by City")
+plt.show()
+```
+![sales xcity](https://github.com/user-attachments/assets/585981e8-5b1e-45d8-a0f3-a050d9a905f5)
+
+**- Customer demographics and purchasing pattern**
+``` python
+#Customer by Country
+df.groupby('Country')['CustomerName'].count()
+
+df.groupby('Country')['CustomerName'].count().plot(kind='bar')
+plt.title("Customer by Country")
+plt.show()
+```
+![customer x country](https://github.com/user-attachments/assets/e1b853a0-abdb-496f-a11a-91d4d80edaf5)
+
+```python
+# Customer by sales
+df.groupby('CustomerName')['Sales'].sum()
+
+plt.figure(figsize=(10,6))
+plt.plot(df.groupby('CustomerName')['Sales'].sum().sort_values(ascending=False).
+↪head(5))
+plt.title("TOP 5 Customers by Sales")
+plt.show()
+```
+![customer x sales](https://github.com/user-attachments/assets/f49996c4-2346-4d87-afe8-66773e2842c2)
+
+**- Product performance**
+```python
+# Sales by Product
+g= df.groupby('ProductName', as_index=False)['Sales'].sum().sort_values(by=␣
+↪'Sales', ascending=False).head(10)
+sns.barplot(data=g, x='ProductName', y='Sales', hue='ProductName', dodge=False).
+↪set(xticklabels=[]);
+```
+![sales x pdt](https://github.com/user-attachments/assets/41a2d20a-c61a-4898-936d-1290f8305d15)
+
+```python
+plt.figure(figsize=(10,6))
+plt.plot(df.groupby('ProductClass')['Sales'].sum())
+plt.title("Sales by ProductClass")
+plt.show()
+```
+![sales x pdtclass](https://github.com/user-attachments/assets/099a2d86-52bb-4dc8-80f0-3e746346538c)
+
+```python
+ # Product by Quantity Sold
+df.groupby('ProductName')['Quantity'].sum().sort_values(ascending=False).
+↪head(10)
+plt.figure(figsize=(10,6))
+plt.plot(df.groupby('ProductName')['Quantity'].sum().
+↪sort_values(ascending=False).head(10))
+plt.title("TOP 10 Products by Quantity Sold")
+plt.show()
+```
+![pdt x qty sold](https://github.com/user-attachments/assets/4f4fcf86-ed61-4373-a2e0-d047f93952e4)
+
+
+
+
+
 
