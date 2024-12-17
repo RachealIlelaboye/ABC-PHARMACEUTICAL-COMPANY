@@ -59,10 +59,10 @@ The dataset for this analysis is an excel file gotten from 3Signet [Official Web
    Live demonstration
 
 #   WEEK 7
-**- SQL database set up using SQLite DB Browser for the pharmaceutical data, ensuring 
+- **SQL database set up using SQLite DB Browser for the pharmaceutical data, ensuring 
 data integrity and security**
 
-**- Creation of facts and dimension tables**
+- **Creation of facts and dimension tables**
 ```SQL
 -------------Creating fact table
 CREATE TABLE Sales(
@@ -97,11 +97,11 @@ CREATE TABLE Sales(
 	Latitude INTEGER NOT NULL,
 	Longitude  INTEGER NOT NULL);
 ```
-**- ERD Creation using SQLITE**
+- **ERD Creation using SQLITE**
 ![Pharm ERD Racheal Ilelaboye](https://github.com/user-attachments/assets/c8531558-70d2-47ae-a69e-50d5977681fb)
 
 
-**- Initial data cleaning**
+- **Initial data cleaning**
 ```SQL
 ---- Count missing values in each column
 SELECT 
@@ -112,7 +112,7 @@ FROM
 ```
 
 # WEEK 8
-**- Sales performance analysis**
+- **Sales performance analysis**
 ```SQL
 ---------Total sales by Products
 SELECT 
@@ -140,7 +140,7 @@ ORDER BY
 ```
 ![1B](https://github.com/user-attachments/assets/18c446da-cb61-4bc6-8e62-8132ec553681)
 
-**- Sales by location**
+- **Sales by location**
 ```SQL
 -----CITIES WITH HIGH SALES VOLUME
 SELECT 
@@ -169,7 +169,7 @@ ORDER BY
     TotalSalesVolume DESC;  
 ```
 ![2B](https://github.com/user-attachments/assets/570441db-4664-48c4-9474-338c0e778aa6)
-**- Customer Segmentation**
+- **Customer Segmentation**
 ```SQL
 ------Total sales by customer type
 SELECT 
@@ -196,7 +196,7 @@ ORDER BY
     TotalSales DESC;
 ```
 ![3B](https://github.com/user-attachments/assets/edd9639d-7f54-4afb-94e0-53453e388f5a)
-**- Product analysis**
+- **Product analysis**
 ``` SQL
 ---------top selling products within each drug class
 WITH RankedProducts AS (
@@ -234,7 +234,7 @@ ORDER BY
     Averageprice DESC;
 ```
 ![4B](https://github.com/user-attachments/assets/a6dcc412-286e-4046-ab52-97161da172df)
-**- Sales representative performance**
+- **Sales representative performance**
 ```sql
 ------top performing sales rep
 SELECT 
@@ -260,7 +260,7 @@ ORDER BY
     Totalsales DESC;
 ```
 ![5B](https://github.com/user-attachments/assets/31529632-c5d9-4502-9e0f-9ad563c7f97b)
-**- Time series analysis**
+- **Time series analysis**
 ```sql
 -----year over year growth in sales
 WITH YearlySales AS (
@@ -303,7 +303,7 @@ ORDER BY
 ![6B](https://github.com/user-attachments/assets/59be3ee9-0988-40b5-9a43-d1e40165c5cf)
 
 # WEEK 9
-**- Data validation with python**
+- **Data validation with python**
 ```python
 # Connect to database
 conn = r"C:\Users\user\Desktop\3Signet\Week 7\Pharm.db"
@@ -335,7 +335,7 @@ df['Sales'] = np.where(df['Sales'] > upper_bound, upper_bound,
 np.where(df['Sales'] < lower_bound, lower_bound,␣
 ↪df['Sales']))
 ```
-**- Explorative data analysis with python**
+- **Explorative data analysis with python**
 ```python
  # Descriptive statistics
 df.describe().round(1)
@@ -359,7 +359,7 @@ validation_report = {
 print(validation_report)
 ```
 
-**- Sales analysis with python**
+- **Sales analysis with python**
 ```python
 # Group by year and sum the sales
 sales_by_year = df.groupby('Year')['Sales'].sum()
@@ -383,7 +383,7 @@ plt.show()
 ```
 ![sales xcity](https://github.com/user-attachments/assets/585981e8-5b1e-45d8-a0f3-a050d9a905f5)
 
-**- Customer demographics and purchasing pattern**
+- **Customer demographics and purchasing pattern**
 ``` python
 #Customer by Country
 df.groupby('Country')['CustomerName'].count()
@@ -406,7 +406,7 @@ plt.show()
 ```
 ![customer x sales](https://github.com/user-attachments/assets/f49996c4-2346-4d87-afe8-66773e2842c2)
 
-**- Product performance**
+- **Product performance**
 ```python
 # Sales by Product
 g= df.groupby('ProductName', as_index=False)['Sales'].sum().sort_values(by=␣
@@ -435,6 +435,51 @@ plt.title("TOP 10 Products by Quantity Sold")
 plt.show()
 ```
 ![pdt x qty sold](https://github.com/user-attachments/assets/4f4fcf86-ed61-4373-a2e0-d047f93952e4)
+
+
+# WEEK 10
+- **Geospatial analysis with python**
+```python
+# create a geopandas DataFrame
+geometry = [Point(xy) for xy in zip(df['Longitude'], df['Latitude'])]
+gdf = gpd.GeoDataFrame(df, geometry = geometry)
+# create a geopandas DataFrame
+geometry = [Point(xy) for xy in zip(df['Longitude'], df['Latitude'])]
+gdf = gpd.GeoDataFrame(df, geometry = geometry)
+```
+![geospatial](https://github.com/user-attachments/assets/f655a1c0-7b0a-41d9-9747-57e1a683abf9)
+
+```python
+# filter the dataframe to include only long., lat., and transaction amount
+df_filtered = df[['Longitude', 'Latitude', 'Sales']]
+df_filtered.head(2)
+# create a scatter plot to visualize the relationship between longitude, latitude, and Sales
+plt.figure(figsize = (10, 8))
+plt.scatter(df_filtered['Longitude'], df_filtered['Latitude'], c = df_filtered['Sales'],
+           cmap = 'viridis')
+plt.colorbar(label = 'Sales')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+plt.title('Sales by Location')
+plt.show()
+```
+![sales x location](https://github.com/user-attachments/assets/505bda00-a5f8-4b8a-a214-4b706f45cac1)
+
+- **Channel Analysis**
+```python
+## Visualization
+g= df.groupby('Channel', as_index=False)['Sales'].sum().sort_values(by='Sales', ascending=False).head(10)
+sns.barplot(data=g, x='Channel', y='Sales', hue='Channel', dodge=False).set(xticklabels=[]);
+```
+![sales x channel](https://github.com/user-attachments/assets/d4e75358-4322-45ac-906b-c34b94757826)
+
+```python
+plt.figure(figsize=(10,6))
+plt.plot(df.groupby('Channel')['Quantity'].sum())
+plt.title("Quantity sold by channel")
+plt.show()
+```
+![qty x channel](https://github.com/user-attachments/assets/59cfc08f-9653-4bd6-8338-429426111a91)
 
 
 
