@@ -483,6 +483,124 @@ plt.show()
 
 
 
+# WEEK 11
+## Hypothesis Testing
+- **Hypothesis 1** : Higher Product price correlate with lower sales quantity
 
+**Method 1: Pearson correlation coefficient**
+```python
+# Calculate Pearson correlation coefficient and p-value
+correlation, p_value = stats.pearsonr(df['Price'], df['Quantity'])
+print(f'Correlation coefficient: {correlation}')
+print(f'p-value: {p_value}')
+```
+**Result**
+Correlation coefficient: -0.0005318345925375115
+p-value: 0.7886391604084931
 
+**Interpretation**
+Negative value of correlation coefficient Indicates a negative relationship (as price 
+increases, quantity decreases).
+p-value ≥ 0.05 indicates no significant evidence of correlation.
 
+**Conclusion**
+A negative correlation coefficient supports the hypothesis however, p-value >0.05 indicates 
+that the hypothesis is not supported by the data.
+
+**Method 2: Linear Regression**
+```python
+import statsmodels.api as sm
+
+# Define independent (X) and dependent (y) variables
+X = df['Price']
+y = df['Quantity']
+
+# Add a constant term for the intercept
+X = sm.add_constant(X)
+
+# Build and fit the regression model
+model = sm.OLS(y, X).fit()
+
+# Print the model summary
+print(model.summary())
+```
+
+**Result**
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               Quantity   R-squared:                       0.000
+Model:                            OLS   Adj. R-squared:                 -0.000
+Method:                 Least Squares   F-statistic:                   0.07187
+Date:                Fri, 06 Dec 2024   Prob (F-statistic):              0.789
+Time:                        14:16:06   Log-Likelihood:            -2.0406e+06
+No. Observations:              254082   AIC:                         4.081e+06
+Df Residuals:                  254080   BIC:                         4.081e+06
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const        113.5975      3.082     36.854      0.000     107.556     119.639
+Price         -0.0018      0.007     -0.268      0.789      -0.015       0.011
+==============================================================================
+Omnibus:                   821906.489   Durbin-Watson:                   1.512
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):     305563630007.176
+Skew:                          53.870   Prob(JB):                         0.00
+Kurtosis:                    5374.334   Cond. No.                         980.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+**Interpretation**
+ R-squared (0.000):
+   o The model explains 0% of the variation in Quantity, suggesting that Price has 
+no explanatory power over Quantity.
+ Coefficient of Price (-0.0018):
+   o The negative coefficient suggests a slight negative relationship between Price
+and Quantity (as price increases, quantity slightly decreases), but:
+   o p-value (0.789) > 0.05: This relationship is not statistically significant, meaning 
+this result could be due to chance.
+ Intercept (113.5975):
+   o When Price is zero, the expected Quantity is approximately 113.6 units.
+   o This value is significant (p-value = 0.000), but it doesn't imply a meaningful 
+relationship with price.
+ F-statistic (0.07187) and Prob (F-statistic) (0.789):
+   o The F-statistic tests if the model as a whole is significant. A very low F-statistic 
+with a high p-value indicates that the model doesn’t significantly explain 
+variations in Quantity.
+ Residual Diagnostics:
+   o Skewness and Kurtosis: High skew (53.870) and kurtosis (5374.334) suggest 
+that the residuals (errors) are not normally distributed, which can impact the 
+validity of OLS assumptions.
+
+**Conclusion**
+There is no significant relationship between Price and Quantity.
+The model has poor explanatory power (R-squared = 0), indicating that Price does not 
+affect Quantity in this dataset.**The hypothesis is thereby rejected**
+
+- **Hypothesis 2**: Sales performance varies significantly across different customer channel.
+
+**Method** One-Way ANOVA 
+```python
+# Group sales data by customer channel
+groups = [group['Sales'].values for name, group in df.groupby('Channel')]
+
+# Perform One-Way ANOVA
+f_statistic, p_value = stats.f_oneway(*groups)
+
+print(f'F-statistic: {f_statistic}')
+print(f'p-value: {p_value}')
+```
+
+**Result**
+F-statistic: 4.314565343723608
+p-value: 0.03778842555381452
+
+**Interpretation**
+A large F-statistic indicates that the variation between group means is greater than the variation within the groups, suggesting a potential difference among the groups.
+Since p-value < 0.05, we reject the null hypothesis. 
+
+**Conclusion**
+There is a significant difference in sales performance across different customer channels.
+Since p-value < 0.05, **we reject the hypothesis.**
