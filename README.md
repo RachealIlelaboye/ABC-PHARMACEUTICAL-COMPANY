@@ -723,6 +723,7 @@ growth
 - Dashboard
 ![PH 1](https://github.com/user-attachments/assets/3ce83bad-d074-4749-b36a-8319f183b8bb)
 ![PH 2](https://github.com/user-attachments/assets/27aa8256-6064-4004-b143-b065fc54f023)
+
  -A total of 751 customers, sales volume of over 11billion, average product price of 412.
  - Highest selling product in poland is Angioparin Brimosumab
  - Mood stabilizers is teh highest selling drug class
@@ -737,6 +738,7 @@ growth
 ![Racheal Ilelaboye Presentaton.pptx](https://github.com/user-attachments/files/18172658/Racheal.Ilelaboye.Presentaton.pptx)
 
 - Live demonstatration of dashboard
+
 https://github.com/user-attachments/assets/b0b10dd0-6802-4504-b68f-3b3736af2623
 
 
