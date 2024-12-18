@@ -735,7 +735,7 @@ growth
  - Customer type with highest sales is pharmacy
  - Sells is the highest in August
  - Mraz-kutch pharma top customer
- - Negative grwoth in 2019 and 2020 indicating business decline. This is as a result of unavailability of data for poland for those years.
+ - Negative growth in 2019 and 2020 indicating business decline. This is as a result of unavailability of data for poland for those years.
 
 - Final presentation slide summarizing the project
   
