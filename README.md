@@ -715,12 +715,15 @@ growth
 
 #WEEK 12
 - Data modelling (Fact and dimension tables) and relationship between tables
+  
 ![Racheal Ilelaboye model view](https://github.com/user-attachments/assets/71be0511-b62d-49ee-8afc-172aba4b5946)
 
 - DAX Measures
+  
 ![DAX](https://github.com/user-attachments/assets/8b0754cc-14be-406b-878d-cf1e5127000f)
 
 - Dashboard
+  
 ![PH 1](https://github.com/user-attachments/assets/3ce83bad-d074-4749-b36a-8319f183b8bb)
 ![PH 2](https://github.com/user-attachments/assets/27aa8256-6064-4004-b143-b065fc54f023)
 
