@@ -721,17 +721,31 @@ growth
 ![DAX](https://github.com/user-attachments/assets/8b0754cc-14be-406b-878d-cf1e5127000f)
 
 - Dashboard
-![PH 1](https://github.com/user-attachments/assets/3ce83bad-d074-4749
+![PH 1](https://github.com/user-attachments/assets/3ce83bad-d074-4749-b36a-8319f183b8bb)
 ![PH 2](https://github.com/user-attachments/assets/27aa8256-6064-4004-b143-b065fc54f023)
--b36a-8319f183b8bb)
+
 
 - Final presentation slide summarizing the project
-![Racheal Ilelaboye Presentaton.pptx](https://github.com/user-attachments/files/18172658/Racheal.Ilelaboye.Presentaton.pptx)
+[View here]![Racheal Ilelaboye Presentaton.pptx](https://github.com/user-attachments/files/18172658/Racheal.Ilelaboye.Presentaton.pptx)
 
 - Live demonstatration of dashboard
 
 
 # CONCLUSION
+This project successfully analyzed sales data using Excel, SQL,Python and Power BI to uncover meaningful insights into sales performance across different cities, product, and customer segments.
+
+Key Findings:
+- Sales Trends: Sales peaked in August.
+- Top Products: Ionclotide is the best-performing product.
+- Country Insights: Germany consistently outperformed poland in sales volume.
+- Customer Segmentation: Key customer segments were identified, leading to targeted marketing opportunities.
 
 # RECOMMENDATIONS
-
+- Adjust Pricing: Introduce competitive pricing strategies or discounts.
+- Product Enhancement: Upgrade features, quality, or packaging.
+- Sales Training: Equip teams with updated strategies and tools.
+- Feedback Mechanisms: Implement systems to gather customer feedback
+- Geographic Expansion: Enter new regions or international markets.
+- Benchmarking: Compare your business against competitors' pricing, products, and services.
+Track progress and remain flexible.
+![image](https://github.com/user-attachments/assets/a83a14d4-715b-4dff-b123-9195c8289aad)
