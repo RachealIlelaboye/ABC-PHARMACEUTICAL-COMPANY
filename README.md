@@ -723,12 +723,21 @@ growth
 - Dashboard
 ![PH 1](https://github.com/user-attachments/assets/3ce83bad-d074-4749-b36a-8319f183b8bb)
 ![PH 2](https://github.com/user-attachments/assets/27aa8256-6064-4004-b143-b065fc54f023)
-
+ -A total of 751 customers, sales volume of over 11billion, average product price of 412.
+ - Highest selling product in poland is Angioparin Brimosumab
+ - Mood stabilizers is teh highest selling drug class
+ - Jimmy grey the top sales representative
+ - Delta team sells most
+ - Customer type with highest sales is pharmacy
+ - Sells is the highest in August
+ - Mraz-kutch pharma top customer
+ - Negative grwoth in 2019 and 2020 indicating business decline. This is as a result of unavailability of data for poland for those years.
 
 - Final presentation slide summarizing the project
-[View here]![Racheal Ilelaboye Presentaton.pptx](https://github.com/user-attachments/files/18172658/Racheal.Ilelaboye.Presentaton.pptx)
+![Racheal Ilelaboye Presentaton.pptx](https://github.com/user-attachments/files/18172658/Racheal.Ilelaboye.Presentaton.pptx)
 
 - Live demonstatration of dashboard
+https://github.com/user-attachments/assets/b0b10dd0-6802-4504-b68f-3b3736af2623
 
 
 # CONCLUSION
@@ -748,4 +757,3 @@ Key Findings:
 - Geographic Expansion: Enter new regions or international markets.
 - Benchmarking: Compare your business against competitors' pricing, products, and services.
 Track progress and remain flexible.
-![image](https://github.com/user-attachments/assets/a83a14d4-715b-4dff-b123-9195c8289aad)
