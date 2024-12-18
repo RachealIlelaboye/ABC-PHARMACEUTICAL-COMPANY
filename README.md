@@ -735,6 +735,7 @@ growth
  - Negative grwoth in 2019 and 2020 indicating business decline. This is as a result of unavailability of data for poland for those years.
 
 - Final presentation slide summarizing the project
+  
 ![Racheal Ilelaboye Presentaton.pptx](https://github.com/user-attachments/files/18172658/Racheal.Ilelaboye.Presentaton.pptx)
 
 - Live demonstatration of dashboard
