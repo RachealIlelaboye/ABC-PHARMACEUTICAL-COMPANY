@@ -358,6 +358,7 @@ validation_report = {
 }
 print(validation_report)
 ```
+[Data vadidation report](https://github.com/user-attachments/files/18208751/Week.9.pdf)
 
 - **Sales analysis with python**
 ```python
@@ -495,6 +496,7 @@ print(f'Correlation coefficient: {correlation}')
 print(f'p-value: {p_value}')
 ```
 **Result** :
+
 Correlation coefficient: -0.0005318345925375115
 p-value: 0.7886391604084931
 
@@ -526,6 +528,7 @@ print(model.summary())
 ```
 
 **Result**:
+
 ![hypo ols](https://github.com/user-attachments/assets/eacf740c-1e6c-40c7-bbab-4f189e42bf51)
 
 **Interpretation** :
@@ -570,6 +573,7 @@ print(f'p-value: {p_value}')
 ```
 
 **Result**:
+
 F-statistic: 4.314565343723608
 p-value: 0.03778842555381452
 
@@ -589,6 +593,7 @@ correlation_matrix = df[['Sales', 'Price', 'Quantity']].corr()
 print(correlation_matrix)
 ``
 **Result** : 
+
             Sales     Price  Quantity
 Sales     1.000000  0.070665  0.899464
 Price     0.070665  1.000000 -0.000532
@@ -605,6 +610,7 @@ model = ols('Sales ~ Price + Quantity', data=df).fit()
 print(model.summary())
 ```
 **Result**:
+
 ![stat ols 1](https://github.com/user-attachments/assets/147ed2b8-8eed-4796-af4e-60ab315ceb33)
 
 **Interpretation**:
@@ -623,6 +629,7 @@ multiple_model = ols('Sales ~ Price + Quantity + C(Channel)', data=df).fit()
 print(multiple_model.summary())
 ```
 **Result**
+
 ![stat ols 2](https://github.com/user-attachments/assets/3cb7939e-b595-48b5-b94e-928febb4e44d)
 
 
@@ -634,6 +641,7 @@ print(anova_result)
 ```
 
 **Results**:
+
             sum_sq df F PR(>F)
 Price 1.568093e+14 1.0 6.917605e+03 0.0
 Quantity 2.506714e+16 1.0 1.105831e+06 0.0
@@ -645,8 +653,9 @@ Residual 5.759502e+15 254079.0 NaN NaN
  - Price, while significant, has a smaller impact on the variation in Sales compared to 
 Quantity.
 
-[Statistical analysis]
-[Hypothesis analysis]
+[Statistical analysis](https://github.com/user-attachments/files/18208743/Racheal.Stat.analysis.Recommendation.pdf)
+
+[Hypothesis analysis](https://github.com/user-attachments/files/18208740/Racheal.Ilelaboye.Hypothesis.pdf)
 
 ##Recommendations
 1. Focus on Increasing Quantity
