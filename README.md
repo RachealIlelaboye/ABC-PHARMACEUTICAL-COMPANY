@@ -645,6 +645,9 @@ Residual 5.759502e+15 254079.0 NaN NaN
  - Price, while significant, has a smaller impact on the variation in Sales compared to 
 Quantity.
 
+[Statistical analysis]
+[Hypothesis analysis]
+
 ##Recommendations
 1. Focus on Increasing Quantity
 - Insight: Quantity is the most significant driver of sales, as evidenced by its high coefficient (421.99 in regression) and dominant contribution to the explained 
@@ -739,7 +742,7 @@ growth
 
 - Final presentation slide summarizing the project
   
-![Racheal Ilelaboye Presentaton.pptx](https://github.com/user-attachments/files/18172658/Racheal.Ilelaboye.Presentaton.pptx)
+[View slide here](https://github.com/user-attachments/files/18208581/Racheal.Ilelaboye.Presentaton.pptx)
 
 - Live demonstatration of dashboard
 
